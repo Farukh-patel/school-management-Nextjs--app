@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Router from "next/router";
+import Link from "next/link";
 
 export default function AddSchool() {
   const {
@@ -47,34 +48,45 @@ export default function AddSchool() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg rounded-xl p-6 w-full max-w-lg">
-        <h2 className="text-2xl font-bold mb-4 text-center">Add School</h2>
+      <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-lg">
+        <div className="mb-4">
+          <Link 
+            href="/" 
+            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            ← Back to Home
+          </Link>
+        </div>
+        
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h2 className="text-2xl font-bold mb-4 text-center">Add School</h2>
 
-        <input {...register("name", { required: true })} placeholder="School Name" className="w-full mb-3 p-2 border rounded" />
-        {errors.name && <span className="text-red-500 text-sm">Name is required</span>}
+          <input {...register("name", { required: true })} placeholder="School Name" className="w-full mb-3 p-2 border rounded" />
+          {errors.name && <span className="text-red-500 text-sm">Name is required</span>}
 
-        <input {...register("address", { required: true })} placeholder="Address" className="w-full mb-3 p-2 border rounded" />
-        {errors.address && <span className="text-red-500 text-sm">Address is required</span>}
+          <input {...register("address", { required: true })} placeholder="Address" className="w-full mb-3 p-2 border rounded" />
+          {errors.address && <span className="text-red-500 text-sm">Address is required</span>}
 
-        <input {...register("city", { required: true })} placeholder="City" className="w-full mb-3 p-2 border rounded" />
-        {errors.city && <span className="text-red-500 text-sm">City is required</span>}
+          <input {...register("city", { required: true })} placeholder="City" className="w-full mb-3 p-2 border rounded" />
+          {errors.city && <span className="text-red-500 text-sm">City is required</span>}
 
-        <input {...register("state", { required: true })} placeholder="State" className="w-full mb-3 p-2 border rounded" />
-        {errors.state && <span className="text-red-500 text-sm">State is required</span>}
+          <input {...register("state", { required: true })} placeholder="State" className="w-full mb-3 p-2 border rounded" />
+          {errors.state && <span className="text-red-500 text-sm">State is required</span>}
 
-        <input {...register("contact", { required: true, pattern: /^[0-9]{7,20}$/ })} placeholder="Contact" className="w-full mb-3 p-2 border rounded" />
-        {errors.contact && <span className="text-red-500 text-sm">Enter valid contact</span>}
+          <input {...register("contact", { required: true, pattern: /^[0-9]{7,20}$/ })} placeholder="Contact" className="w-full mb-3 p-2 border rounded" />
+          {errors.contact && <span className="text-red-500 text-sm">Enter valid contact</span>}
 
-        <input {...register("email_id", { required: true, pattern: /^\S+@\S+$/i })} placeholder="Email" className="w-full mb-3 p-2 border rounded" />
-        {errors.email_id && <span className="text-red-500 text-sm">Enter valid email</span>}
+          <input {...register("email_id", { required: true, pattern: /^\S+@\S+$/i })} placeholder="Email" className="w-full mb-3 p-2 border rounded" />
+          {errors.email_id && <span className="text-red-500 text-sm">Enter valid email</span>}
 
-        <input type="file" {...register("image", { required: true })} className="mb-3" />
-        {errors.image && <span className="text-red-500 text-sm">Image is required</span>}
+          <input type="file" {...register("image", { required: true })} className="mb-3" />
+          {errors.image && <span className="text-red-500 text-sm">Image is required</span>}
 
-        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700 transition">Submit</button>
+          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700 transition">Submit</button>
 
-        {message && <p className="mt-3 text-center font-medium">{message}</p>}
-      </form>
+          {message && <p className="mt-3 text-center font-medium">{message}</p>}
+        </form>
+      </div>
     </div>
   );
 }
