@@ -1,4 +1,3 @@
-// src/lib/db.js
 import mysql from "mysql2/promise";
 
 let pool;
@@ -11,13 +10,10 @@ export async function getDB() {
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
       port: process.env.MYSQL_PORT || 4000,
-      ssl: {
-        rejectUnauthorized: true,
-      },
+      ssl: { rejectUnauthorized: true }, // REQUIRED for TiDB on Vercel
       waitForConnections: true,
       connectionLimit: 10,
     });
   }
   return pool;
 }
- 
