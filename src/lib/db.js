@@ -1,3 +1,4 @@
+// src/lib/db.js
 import mysql from "mysql2/promise";
 
 let pool;
@@ -9,9 +10,14 @@ export async function getDB() {
       user: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
+      port: process.env.MYSQL_PORT || 4000,
+      ssl: {
+        rejectUnauthorized: true,
+      },
       waitForConnections: true,
       connectionLimit: 10,
     });
   }
   return pool;
 }
+ 
